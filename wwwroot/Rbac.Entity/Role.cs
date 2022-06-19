@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rbac.Entity
 {
-    public class Role
+    public class Role: BaseClass
     {
         ///<summary>
         ///角色Id

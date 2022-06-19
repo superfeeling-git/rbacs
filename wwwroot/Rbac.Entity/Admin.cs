@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Rbac.Entity
 {
+    /// <summary>
+    /// 数据注解   []特性  fluentapi
+    /// </summary>
     public class Admin : BaseClass
     {
         ///<summary>
