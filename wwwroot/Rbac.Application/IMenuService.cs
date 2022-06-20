@@ -5,6 +5,6 @@ namespace Rbac.Application
 {
     public interface IMenuService
     {
-        List<Menu> GetAll();
+        List<MenuDto> GetAll();
     }
 }
