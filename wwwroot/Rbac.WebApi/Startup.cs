@@ -36,6 +36,15 @@ namespace Rbac.WebApi
             services.AddScoped<IMenuRepository, MenuRepository>();
             services.AddScoped<IMenuService, MenuService>();
 
+            services.AddCors(option => {
+                option.AddDefaultPolicy(config => {
+                    config.WithOrigins("http://localhost:8080")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+                });
+            });
+
             services.AddDbContext<RbacDbContext>(option => {
                 option.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
             });
@@ -59,6 +68,8 @@ namespace Rbac.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

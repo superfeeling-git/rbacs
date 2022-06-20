@@ -33,7 +33,11 @@ namespace Rbac.Application
             return menu;
         }
 
-        public void GetNodes(List<MenuDto> menus)
+        /// <summary>
+        /// 递归--终止条件
+        /// </summary>
+        /// <param name="menus"></param>
+        private void GetNodes(List<MenuDto> menus)
         {
             var list = menuRepository.GetAll();
 
@@ -43,10 +47,12 @@ namespace Rbac.Application
                 {
                     MenuId = m.MenuId,
                     MenuName = m.MenuName,
-                    LinkUrl = m.LinkUrl,
-                });
+                    LinkUrl = m.LinkUrl
+                }).ToList();
 
                 item.children.AddRange(_list);
+
+                GetNodes(_list);
             }
         }
     }
