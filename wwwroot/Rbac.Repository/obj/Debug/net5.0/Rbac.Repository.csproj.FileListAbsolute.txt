@@ -10,3 +10,6 @@ E:\Tech\Rbac\wwwroot\Rbac.Repository\obj\Debug\net5.0\Rbac.Repository.dll
 E:\Tech\Rbac\wwwroot\Rbac.Repository\obj\Debug\net5.0\refint\Rbac.Repository.dll
 E:\Tech\Rbac\wwwroot\Rbac.Repository\obj\Debug\net5.0\Rbac.Repository.pdb
 E:\Tech\Rbac\wwwroot\Rbac.Repository\obj\Debug\net5.0\ref\Rbac.Repository.dll
+E:\Tech\Rbac\wwwroot\Rbac.Repository\bin\Debug\net5.0\Rbac.Entity.dll
+E:\Tech\Rbac\wwwroot\Rbac.Repository\bin\Debug\net5.0\Rbac.Entity.pdb
+E:\Tech\Rbac\wwwroot\Rbac.Repository\obj\Debug\net5.0\Rbac.Repository.csproj.CopyComplete

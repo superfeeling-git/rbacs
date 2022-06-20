@@ -14,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Rbac.Application\Rbac.Application.csproj" />
     <ProjectReference Include="..\Rbac.Entity\Rbac.Entity.csproj" />
+    <ProjectReference Include="..\Rbac.Repository\Rbac.Repository.csproj" />
   </ItemGroup>
 
 </Project>

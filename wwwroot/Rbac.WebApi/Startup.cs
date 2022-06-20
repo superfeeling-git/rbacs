@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Rbac.Entity;
+using Rbac.Repository;
+using Rbac.Application;
 
 namespace Rbac.WebApi
 {
@@ -29,6 +31,11 @@ namespace Rbac.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //зЂВс
+            services.AddScoped<IMenuRepository, MenuRepository>();
+            services.AddScoped<IMenuService, MenuService>();
+
             services.AddDbContext<RbacDbContext>(option => {
                 option.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
             });

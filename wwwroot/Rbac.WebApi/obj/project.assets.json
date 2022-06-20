@@ -1594,6 +1594,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Rbac.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Rbac.Repository": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Rbac.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Rbac.Application.dll": {}
+        }
+      },
       "Rbac.Entity/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -1605,6 +1618,19 @@
         },
         "runtime": {
           "bin/placeholder/Rbac.Entity.dll": {}
+        }
+      },
+      "Rbac.Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Rbac.Entity": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Rbac.Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Rbac.Repository.dll": {}
         }
       }
     }
@@ -5982,17 +6008,29 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Rbac.Application/1.0.0": {
+      "type": "project",
+      "path": "../Rbac.Application/Rbac.Application.csproj",
+      "msbuildProject": "../Rbac.Application/Rbac.Application.csproj"
+    },
     "Rbac.Entity/1.0.0": {
       "type": "project",
       "path": "../Rbac.Entity/Rbac.Entity.csproj",
       "msbuildProject": "../Rbac.Entity/Rbac.Entity.csproj"
+    },
+    "Rbac.Repository/1.0.0": {
+      "type": "project",
+      "path": "../Rbac.Repository/Rbac.Repository.csproj",
+      "msbuildProject": "../Rbac.Repository/Rbac.Repository.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.0",
+      "Rbac.Application >= 1.0.0",
       "Rbac.Entity >= 1.0.0",
+      "Rbac.Repository >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -6028,8 +6066,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "E:\\Tech\\Rbac\\wwwroot\\Rbac.Application\\Rbac.Application.csproj": {
+              "projectPath": "E:\\Tech\\Rbac\\wwwroot\\Rbac.Application\\Rbac.Application.csproj"
+            },
             "E:\\Tech\\Rbac\\wwwroot\\Rbac.Entity\\Rbac.Entity.csproj": {
               "projectPath": "E:\\Tech\\Rbac\\wwwroot\\Rbac.Entity\\Rbac.Entity.csproj"
+            },
+            "E:\\Tech\\Rbac\\wwwroot\\Rbac.Repository\\Rbac.Repository.csproj": {
+              "projectPath": "E:\\Tech\\Rbac\\wwwroot\\Rbac.Repository\\Rbac.Repository.csproj"
             }
           }
         }
