@@ -8,6 +8,11 @@ export default new Router({
       path: '/',
       name: 'Menu',
       component: ()=>import('../page/menu')
+    },
+    {
+      path: '/coma',
+      name: 'coma',
+      component: ()=>import('../page/comA')
     }
   ]
 })
