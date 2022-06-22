@@ -5,24 +5,11 @@ using System.Linq;
 
 namespace Rbac.Repository
 {
-    public class MenuRepository : IMenuRepository
+    public class MenuRepository : BaseRepository<Menu, int>, IMenuRepository
     {
-        private readonly RbacDbContext db;
-
-        public MenuRepository(RbacDbContext db)
+        public MenuRepository(RbacDbContext context)
         {
-            this.db = db;
-        }
-
-        public List<Menu> GetAll()
-        {
-            return db.Menus.ToList();
-        }
-
-        public int Create(Menu menu)
-        {
-            db.Menus.Add(menu);
-            return db.SaveChanges();
+            this.db = context;
         }
     }
 }

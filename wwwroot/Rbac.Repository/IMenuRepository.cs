@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Rbac.Repository
 {
-    public interface IMenuRepository
+    public interface IMenuRepository: IBaseRepository<Menu, int>
     {
-        List<Menu> GetAll();
-        int Create(Menu menu);
+
     }
 }
