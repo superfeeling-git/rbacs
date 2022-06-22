@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-form :inline="true" :model="formInline" class="demo-form-inline">
+        <el-form :inline="true" class="demo-form-inline">
             <el-form-item>
                 <el-button type="primary" @click="CreateMenu">添加</el-button>
             </el-form-item>
@@ -40,14 +40,17 @@
         },
     
         mounted() {
-            axios.get("https://localhost:5001/api/Menu/GetAll").then(m => {
-                this.tableData = m.data;
-            });
+            this.loadData();
         },
     
         methods: {
             CreateMenu() {
                 this.dialogTableVisible = true;
+            },
+            loadData(){
+                    axios.get("https://localhost:5001/api/Menu/GetAll").then(m => {
+                    this.tableData = m.data;
+                });
             }
         },
     };

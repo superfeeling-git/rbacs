@@ -6,5 +6,7 @@ namespace Rbac.Application
     public interface IMenuService
     {
         List<MenuDto> GetAll();
+        List<CascaderDto> GetCascaderAll();
+        int Create(MenuCreateDto dto);
     }
 }

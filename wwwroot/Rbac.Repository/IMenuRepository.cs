@@ -6,5 +6,6 @@ namespace Rbac.Repository
     public interface IMenuRepository
     {
         List<Menu> GetAll();
+        int Create(Menu menu);
     }
 }

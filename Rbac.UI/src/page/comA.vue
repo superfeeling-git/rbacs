@@ -1,6 +1,9 @@
 <template>
     <div>
-        <com-b :stuList="stu"></com-b>
+        <com-b ref="comb" v-model="ShowData" :stuList="stu"></com-b>
+        {{ShowData}}
+        <button @click="UpdateCom">Update</button>
+        <button @click="invoke">调用子组件方法</button>        
     </div>
 </template>
 
@@ -23,7 +26,8 @@ name: 'RbacUIComA',
                     id:2,
                     name:"李四"
                 }
-            ]
+            ],
+            ShowData:''
         };
     },
 
@@ -32,7 +36,18 @@ name: 'RbacUIComA',
     },
 
     methods: {
-        
+        UpdateCom(){
+            this.stu.push({
+                    id:3,
+                    name:"王五"
+                });
+        },
+        invoke(){
+            this.$refs.comb.test();
+        },
+        save(p){
+            console.log(`save......${p}`);
+        }
     },
 };
 </script>

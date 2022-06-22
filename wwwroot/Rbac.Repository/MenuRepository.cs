@@ -18,5 +18,11 @@ namespace Rbac.Repository
         {
             return db.Menus.ToList();
         }
+
+        public int Create(Menu menu)
+        {
+            db.Menus.Add(menu);
+            return db.SaveChanges();
+        }
     }
 }

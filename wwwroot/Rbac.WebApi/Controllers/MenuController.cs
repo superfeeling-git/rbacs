@@ -24,5 +24,17 @@ namespace Rbac.WebApi.Controllers
         {
             return new JsonResult(menuService.GetAll());
         }
+
+        [HttpGet]
+        public IActionResult GetCascaderAll()
+        {
+            return new JsonResult(menuService.GetCascaderAll());
+        }
+
+        [HttpPost]
+        public IActionResult Create(MenuCreateDto dto)
+        {
+            return Ok(menuService.Create(dto));
+        }
     }
 }
