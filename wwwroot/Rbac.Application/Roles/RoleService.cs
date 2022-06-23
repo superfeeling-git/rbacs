@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Rbac.Application.Roles
 {
-    public class RoleService :BaseService<Role,RoleDto>, IRoleService
+    public class RoleService : BaseService<Role,RoleDto>, IRoleService
     {
         private readonly IRoleRepository roleRepository;
 
@@ -19,11 +19,6 @@ namespace Rbac.Application.Roles
             :base(roleRepository, mapper)
         {
             this.roleRepository = roleRepository;
-        }
-
-        public void Audit()
-        {
-            
         }
     }
 }

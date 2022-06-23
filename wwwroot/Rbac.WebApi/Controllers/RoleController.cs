@@ -2,30 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Rbac.Application.Roles;
 using Rbac.Application.Roles.Dto;
+using Rbac.Entity;
 
 namespace Rbac.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    public class RoleController : ControllerBase
+    public class RoleController : BaseController<IRoleService, Role, RoleDto>
     {
-        private readonly IRoleService role;
-
-        public RoleController(IRoleService role)
+        public RoleController(IRoleService role) : base(role)
         {
-            this.role = role;
-        }
-
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return new JsonResult(role.GetList());
-        }
-
-        [HttpPost]
-        public IActionResult Post(RoleDto dto)
-        {
-            return Ok(role.Create(dto));
         }
     }
 }
