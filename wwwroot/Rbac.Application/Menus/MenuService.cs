@@ -3,16 +3,19 @@ using Rbac.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 
 namespace Rbac.Application
 {
     public class MenuService : IMenuService
     {
         private readonly IMenuRepository menuRepository;
+        private readonly IMapper mapper;
 
-        public MenuService(IMenuRepository menuRepository)
+        public MenuService(IMenuRepository menuRepository,IMapper mapper)
         {
             this.menuRepository = menuRepository;
+            this.mapper = mapper;
         }
 
         public List<MenuDto> GetAll()
@@ -93,15 +96,7 @@ namespace Rbac.Application
 
         public int Create(MenuCreateDto dto)
         {
-            return menuRepository.Create(new Menu
-            {
-                CreateId = 0,
-                CreateTime = DateTime.Now,
-                IsDelete = false,
-                LinkUrl = dto.LinkUrl,
-                MenuName = dto.MenuName,
-                ParentId = dto.ParentId
-            });
+            return menuRepository.Create(mapper.Map<Menu>(dto));
         }
     }
 }

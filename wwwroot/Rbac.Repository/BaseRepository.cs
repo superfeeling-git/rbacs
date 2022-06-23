@@ -8,24 +8,18 @@ using System.Threading.Tasks;
 
 namespace Rbac.Repository
 {
-    public class BaseRepository<TEntity, TKey> : IBaseRepository<TEntity, TKey> where TEntity : class
+    public abstract class BaseRepository<TEntity, TKey> : IBaseRepository<TEntity, TKey> where TEntity : class
         where TKey : struct
     {
-        /*private readonly RbacDbContext db;
-
-        public BaseRepository(RbacDbContext db)
-        {
-            this.db = db;
-        }*/
 
         protected RbacDbContext db;
 
         /// <summary>
-        /// 添加
+        /// 添加--虚方法
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        public int Create(TEntity entity)
+        public virtual int Create(TEntity entity)
         {
             db.Set<TEntity>().Add(entity);
             return db.SaveChanges();
@@ -37,7 +31,7 @@ namespace Rbac.Repository
         /// <param name="t"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public int BulkCreate(List<TEntity> entities)
+        public virtual int BulkCreate(List<TEntity> entities)
         {
             foreach (var item in entities)
             {
@@ -52,7 +46,7 @@ namespace Rbac.Repository
         /// <param name="t"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public int Update(TEntity entity)
+        public virtual int Update(TEntity entity)
         {
             db.Entry<TEntity>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             return db.SaveChanges();
@@ -63,7 +57,7 @@ namespace Rbac.Repository
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public int Delete(TKey key)
+        public virtual int Delete(TKey key)
         {
             var entity = db.Set<TEntity>().Find(key);
             db.Remove(entity);
@@ -75,7 +69,7 @@ namespace Rbac.Repository
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public int Delete(Expression<Func<TEntity, bool>> predicate)
+        public virtual int Delete(Expression<Func<TEntity, bool>> predicate)
         {
             var entity = db.Set<TEntity>().Where(predicate);
             db.Remove(entity);
@@ -86,7 +80,7 @@ namespace Rbac.Repository
         /// 返回单件数据
         /// </summary>
         /// <returns></returns>
-        public TEntity GetEntity(TKey key)
+        public virtual TEntity GetEntity(TKey key)
         {
             return db.Set<TEntity>().Find(key);
         }
@@ -95,7 +89,7 @@ namespace Rbac.Repository
         /// 返回单件数据
         /// </summary>
         /// <returns></returns>
-        public TEntity GetEntity(Expression<Func<TEntity, bool>> predicate)
+        public virtual TEntity GetEntity(Expression<Func<TEntity, bool>> predicate)
         {
             return db.Set<TEntity>().Where(predicate).FirstOrDefault();
         }
@@ -104,7 +98,7 @@ namespace Rbac.Repository
         /// 获取全部数据
         /// </summary>
         /// <returns></returns>
-        public List<TEntity> GetAll()
+        public virtual List<TEntity> GetAll()
         {
             return db.Set<TEntity>().ToList();
         }
@@ -113,7 +107,7 @@ namespace Rbac.Repository
         /// 获取全部数据
         /// </summary>
         /// <returns></returns>
-        public List<TEntity> GetList(Expression<Func<TEntity, bool>> predicate)
+        public virtual List<TEntity> GetList(Expression<Func<TEntity, bool>> predicate)
         {
             return db.Set<TEntity>().Where(predicate).ToList();
         }
@@ -122,7 +116,7 @@ namespace Rbac.Repository
         /// 获取全部数据
         /// </summary>
         /// <returns></returns>
-        public IQueryable<TEntity> GetQuery(Expression<Func<TEntity, bool>> predicate)
+        public virtual IQueryable<TEntity> GetQuery(Expression<Func<TEntity, bool>> predicate)
         {
             return db.Set<TEntity>().Where(predicate);
         }

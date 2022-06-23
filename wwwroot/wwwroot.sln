@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rbac.Entity", "Rbac.Entity\Rbac.Entity.csproj", "{CE3CF4C1-CEAC-483F-8483-E74F310417AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rbac.Entity", "Rbac.Entity\Rbac.Entity.csproj", "{CE3CF4C1-CEAC-483F-8483-E74F310417AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rbac.Application", "Rbac.Application\Rbac.Application.csproj", "{8DEC3B91-0878-4027-B2C2-55D22F1F88AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rbac.Application", "Rbac.Application\Rbac.Application.csproj", "{8DEC3B91-0878-4027-B2C2-55D22F1F88AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rbac.Repository", "Rbac.Repository\Rbac.Repository.csproj", "{C217449F-F729-4A41-AE18-DBF24B9E5F34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rbac.Repository", "Rbac.Repository\Rbac.Repository.csproj", "{C217449F-F729-4A41-AE18-DBF24B9E5F34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rbac.WebApi", "Rbac.WebApi\Rbac.WebApi.csproj", "{95643575-DB5F-4C2E-A4C2-C673C8CD0936}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rbac.WebApi", "Rbac.WebApi\Rbac.WebApi.csproj", "{95643575-DB5F-4C2E-A4C2-C673C8CD0936}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{1CEE9EDB-F48C-45AA-8FAF-8A67C50DB53B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{95643575-DB5F-4C2E-A4C2-C673C8CD0936}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95643575-DB5F-4C2E-A4C2-C673C8CD0936}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95643575-DB5F-4C2E-A4C2-C673C8CD0936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CEE9EDB-F48C-45AA-8FAF-8A67C50DB53B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CEE9EDB-F48C-45AA-8FAF-8A67C50DB53B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CEE9EDB-F48C-45AA-8FAF-8A67C50DB53B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CEE9EDB-F48C-45AA-8FAF-8A67C50DB53B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

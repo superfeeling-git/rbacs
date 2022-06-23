@@ -15,6 +15,8 @@ using Microsoft.EntityFrameworkCore;
 using Rbac.Entity;
 using Rbac.Repository;
 using Rbac.Application;
+using System.Reflection;
+using Rbac.Application.Roles;
 
 namespace Rbac.WebApi
 {
@@ -34,9 +36,13 @@ namespace Rbac.WebApi
                 
             });
 
+            services.AddAutoMapper(Assembly.Load("Rbac.Application"));
+
             //зЂВс
             services.AddScoped<IMenuRepository, MenuRepository>();
             services.AddScoped<IMenuService, MenuService>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoleService, RoleService>();
 
             services.AddCors(option => {
                 option.AddDefaultPolicy(config => {
