@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rbac.Application;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Rbac.WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]//标签，特性 Attribute
     public class MenuController : ControllerBase
     {
         private readonly IMenuService menuService;
@@ -25,7 +28,7 @@ namespace Rbac.WebApi.Controllers
             return new JsonResult(menuService.GetAll());
         }
 
-        [HttpGet]
+        [HttpGet]        
         public IActionResult GetCascaderAll()
         {
             return new JsonResult(menuService.GetCascaderAll());

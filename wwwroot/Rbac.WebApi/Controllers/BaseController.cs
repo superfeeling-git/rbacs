@@ -8,7 +8,7 @@ namespace Rbac.WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class BaseController<TService,TEnity, TDto> : ControllerBase
+    public class BaseController<TService, TEnity, TDto> : ControllerBase
         where TService : IBaseService<TEnity, TDto>
         where TEnity : class, new()
         where TDto : class, new()

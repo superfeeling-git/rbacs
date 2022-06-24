@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rbac.Entity
+namespace Rbac.Application.Admins.Dto
 {
-    /// <summary>
-    /// 数据注解   []特性  fluentapi
-    /// </summary>
-    public class Admin : BaseClass
+    public class AdminDto
     {
         ///<summary>
         ///管理员Id
@@ -31,20 +27,13 @@ namespace Rbac.Entity
         ///邮箱
         ///</summary>
         public string Email { get; set; }
-
         ///<summary>
         ///末次登录时间
         ///</summary>
         public DateTime? LastLoginTime { get; set; }
-
-        ///<summary>
-        ///末次登录IP
-        ///</summary>
-        public string LastLoginIP { get; set; }
-
-        ///<summary>
-        ///是否锁定
-        ///</summary>
-        public byte IsLock { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime CreateTime { get; set; }
     }
 }

@@ -17,6 +17,42 @@ name: 'RbacUIComA',
 
     data() {
         return {
+
+
+
+
+            token:{
+                header:{
+                    "alg":"hs256",
+                    "typ":"JWT"
+                },
+                payload:{
+                    "iss":"token颁发者",
+                    "aud":"token接收者",
+                    "exp":"1小时",
+                    "username":"",
+                    "role":""
+                },
+                Signature:{
+                    
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             stu:[
                 {
                     id:1,

@@ -17,6 +17,10 @@ using Rbac.Repository;
 using Rbac.Application;
 using System.Reflection;
 using Rbac.Application.Roles;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Rbac.Application.Admins;
 
 namespace Rbac.WebApi
 {
@@ -32,8 +36,9 @@ namespace Rbac.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers(options => { 
-                
+            services.AddControllers(options =>
+            {
+
             });
 
             services.AddAutoMapper(Assembly.Load("Rbac.Application"));
@@ -43,9 +48,13 @@ namespace Rbac.WebApi
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<IAdminService, AdminService>();
 
-            services.AddCors(option => {
-                option.AddDefaultPolicy(config => {
+            services.AddCors(option =>
+            {
+                option.AddDefaultPolicy(config =>
+                {
                     config.WithOrigins("http://localhost:8080")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
@@ -53,9 +62,41 @@ namespace Rbac.WebApi
                 });
             });
 
-            services.AddDbContext<RbacDbContext>(option => {
+            services.AddDbContext<RbacDbContext>(option =>
+            {
                 option.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
             });
+
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(
+            option =>
+            {
+                //Token验证参数
+                option.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //是否验证发行人
+                    ValidateIssuer = true,
+                    ValidIssuer = Configuration["JwtConfig:Issuer"],//发行人
+
+                    //是否验证受众人
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["JwtConfig:Audience"],//受众人
+
+                    //是否验证密钥
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtConfig:key"])),
+
+                    ValidateLifetime = true, //验证生命周期
+
+                    RequireExpirationTime = true, //过期时间
+
+                    ClockSkew = TimeSpan.Zero   //平滑过期偏移时间
+                };
+            }
+);
 
             services.AddSwaggerGen(c =>
             {
@@ -63,6 +104,11 @@ namespace Rbac.WebApi
             });
         }
 
+        /// <summary>
+        /// 中间件--HTTP请求管道
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -79,6 +125,10 @@ namespace Rbac.WebApi
 
             app.UseCors();
 
+            //认证中间件
+            app.UseAuthentication();
+
+            //授权中间件
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
