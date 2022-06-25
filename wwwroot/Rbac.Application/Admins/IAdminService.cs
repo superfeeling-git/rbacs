@@ -12,6 +12,17 @@ namespace Rbac.Application.Admins
 {
     public interface IAdminService : IBaseService<Admin, AdminDto>
     {
+        /// <summary>
+        /// 注册
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         ResultDto Register(AdminDto dto);
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        TokenDto Login(LoginDto dto);
     }
 }

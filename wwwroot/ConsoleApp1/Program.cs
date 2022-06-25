@@ -8,8 +8,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Program program = new Program();
-            program.Join("张三","李四");
+            string s = "88";
+            //0100  0088  0006
+            Console.WriteLine(s.PadLeft(8, '*'));
             Console.ReadLine();
         }
 

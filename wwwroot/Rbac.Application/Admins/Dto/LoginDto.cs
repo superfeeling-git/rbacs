@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Rbac.Application.Admins.Dto
 {
-    internal class LoginDto
+    public class LoginDto
     {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string ValidateCode { get; set; }
     }
 }

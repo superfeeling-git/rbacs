@@ -27,5 +27,16 @@ namespace Rbac.WebApi.Controllers
         {
             return Ok(admin.Register(dto));
         }
+
+        /// <summary>
+        /// 注册
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult Login(LoginDto dto)
+        {
+            return Ok(admin.Login(dto));
+        }
     }
 }
