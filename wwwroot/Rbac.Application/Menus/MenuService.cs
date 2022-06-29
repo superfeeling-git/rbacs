@@ -36,6 +36,11 @@ namespace Rbac.Application
             return menu;
         }
 
+        public List<MenuListDto> GetMenu()
+        {
+            return mapper.Map<List<MenuListDto>>(menuRepository.GetAll());
+        }
+
         /// <summary>
         /// 递归--终止条件
         /// </summary>
@@ -57,6 +62,11 @@ namespace Rbac.Application
 
                 GetNodes(_list);
             }
+        }
+
+        public int Delete(int id)
+        {
+            return menuRepository.Delete(id);
         }
 
         public List<CascaderDto> GetCascaderAll()

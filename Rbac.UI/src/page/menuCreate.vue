@@ -2,7 +2,7 @@
     <div>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
             <el-form-item label="父级菜单" prop="parentId">
-                <el-cascader v-model="value" :options="options" @change="handleChange"></el-cascader>
+                <el-cascader v-model="value" :options="options" :props="{ checkStrictly: true }" @change="handleChange"></el-cascader>
             </el-form-item>
             <el-form-item label="菜单名称" prop="menuName">
                 <el-input v-model="ruleForm.menuName"></el-input>
@@ -48,6 +48,7 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
+                        //console.log(this.value);
                         this.ruleForm.parentId = this.value.slice(-1)[0];
                         axios.post('/api/Menu/Create', this.ruleForm).then(m => {
                             this.$message({

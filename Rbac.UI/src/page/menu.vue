@@ -13,6 +13,13 @@
             </el-table-column>
             <el-table-column prop="linkUrl" label="菜单链接" sortable width="180">
             </el-table-column>
+            <el-table-column label="操作">
+                <template slot-scope="scope">
+                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                    <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除
+                    </el-button>
+                </template>
+            </el-table-column>
         </el-table>
         <el-dialog title="添加菜单" :visible.sync="dialogTableVisible">
             <menu-create></menu-create>
@@ -47,10 +54,41 @@
             CreateMenu() {
                 this.dialogTableVisible = true;
             },
-            loadData(){
-                    axios.get("https://localhost:5001/api/Menu/GetAll").then(m => {
+            loadData() {
+                axios.get("/api/Menu/GetAll").then(m => {
                     this.tableData = m.data;
                 });
+            },
+            handleEdit(index, row) {
+                console.log(index, row);
+            },
+            handleDelete(index, row) {
+                if (row.children.length > 0) {
+                    this.$message.error('还有子节点，不能删除');
+                }
+                else {
+                    this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        axios.get(`/api/Menu/Delete?id=${row.menuId}`).then(m => {
+                            this.$message({
+                                message: '删除成功',
+                                type: 'success',
+                                duration: 1000,
+                                onClose: (m) => {
+                                    this.loadData();
+                                }
+                            });
+                        });
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                    });    
+                }
             }
         },
     };

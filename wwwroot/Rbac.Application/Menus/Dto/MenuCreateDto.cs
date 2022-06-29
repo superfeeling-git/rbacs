@@ -13,4 +13,9 @@ namespace Rbac.Application
         public string LinkUrl { get; set; }
         public int ParentId { get; set; }
     }
+
+    public class MenuListDto : MenuCreateDto
+    {
+        public bool IsShow { get; set; }
+    }
 }

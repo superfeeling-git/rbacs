@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rbac.Entity;
 
 namespace Rbac.Entity.Migrations
 {
     [DbContext(typeof(RbacDbContext))]
-    partial class RbacDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220628073236_0628")]
+    partial class _0628
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

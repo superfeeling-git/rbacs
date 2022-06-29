@@ -8,5 +8,7 @@ namespace Rbac.Application
         List<MenuDto> GetAll();
         List<CascaderDto> GetCascaderAll();
         int Create(MenuCreateDto dto);
+        int Delete(int id);
+        List<MenuListDto> GetMenu();
     }
 }

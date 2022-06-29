@@ -12,5 +12,6 @@ namespace Rbac.Entity
         public string MenuName { get; set; }
         public string LinkUrl { get; set; }
         public int ParentId { get; set; }
+        public bool IsShow { get; set; }
     }
 }

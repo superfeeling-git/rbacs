@@ -39,5 +39,18 @@ namespace Rbac.WebApi.Controllers
         {
             return Ok(menuService.Create(dto));
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult GetMenuList()
+        {
+            return new JsonResult(menuService.GetMenu());
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            return Ok(menuService.Delete(id));
+        }
     }
 }
