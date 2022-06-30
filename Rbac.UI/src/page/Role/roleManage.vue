@@ -21,7 +21,7 @@
             </el-table-column>
         </el-table>
         <el-dialog title="分配权限" :visible.sync="dialogVisible">
-            <menu-tree :mid="xxx"></menu-tree>
+            <menu-tree ref="dialogTree" :roleId="roleId"></menu-tree>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogVisible = false">取 消</el-button>
                 <el-button type="primary" @click="SavePermission()">确 定</el-button>
@@ -42,7 +42,8 @@
             return {
                 tableData: [],
                 moment,
-                dialogVisible: false
+                dialogVisible: false,
+                roleId: 0,
             }
         },
         created() {
@@ -63,10 +64,30 @@
                 return row.isLock ? "是" : "否";
             },
             assignPerm(roleId) {
+                this.roleId = roleId;
                 this.dialogVisible = true;
             },
             SavePermission() {
-                //获取数据
+                //codeing.....
+                //1、获取数据
+                //2、调用接口
+                //3、批量入库保存
+    
+                /**
+                 * 1、父组件获取
+                 * 2、子组件获取
+                */
+                var checkedId = this.$refs.dialogTree.$refs.menuTree.getCheckedNodes(true, true).map(m => m.value);
+                var roleId = this.roleId;
+                axios.post('/api/role/SavePermission', { menuId: checkedId, roleId: roleId }).then(m => {
+                    
+                });
+                /**
+                 * 1、父组件获取
+                 * 2、子组件获取
+                */
+                //console.log(this.$refs.dialogTree.getdata());
+                this.dialogVisible = false;
             }
         }
     }

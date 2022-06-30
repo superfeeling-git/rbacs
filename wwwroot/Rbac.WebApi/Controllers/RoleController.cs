@@ -10,8 +10,18 @@ namespace Rbac.WebApi.Controllers
     [ApiController]
     public class RoleController : BaseController<IRoleService, Role, RoleDto>
     {
+        private readonly IRoleService role;
+
         public RoleController(IRoleService role) : base(role)
         {
+            this.role = role;
+        }
+
+        [HttpPost]
+        public IActionResult SavePermission(PermissionDto permission)
+        {
+            role.SavePermission(permission)
+            return Ok();
         }
     }
 }

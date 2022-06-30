@@ -8,6 +8,21 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+           
+
+            string id = "13240219800908061X";
+
+            DateTime bir = Convert.ToDateTime($"{id.Substring(6, 4)}-{id.Substring(10, 2)}-{id.Substring(12, 2)}");
+
+
+            List<stu> stuList = new List<stu>();
+            stuList.Add(new stu { id = 1, name = "张三" });
+            stuList.Add(new stu { id = 2, name = "李四" });
+            stuList.Add(new stu { id = 3, name = "王五" });
+
+            var list = stuList.Where(m => m.id == 2).Select(m => new stu { id = m.id });
+
+
             //定义一个乱的数组
             int[] arr = new int[] { 4, 5, 1, 2 };
             //外循环
@@ -70,5 +85,11 @@ namespace ConsoleApp1
                 --src;
             }
         }
+    }
+
+    public class stu
+    {
+        public int id { get; set; }
+        public string name { get; set; }
     }
 }

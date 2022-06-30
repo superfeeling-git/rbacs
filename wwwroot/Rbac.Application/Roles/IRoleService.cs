@@ -11,6 +11,6 @@ namespace Rbac.Application.Roles
 {
     public interface IRoleService : IBaseService<Role, RoleDto>
     {
-        
+        int SavePermission(PermissionDto permission);
     }
 }
