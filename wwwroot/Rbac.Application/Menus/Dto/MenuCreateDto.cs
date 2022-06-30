@@ -12,10 +12,11 @@ namespace Rbac.Application
         public string MenuName { get; set; }
         public string LinkUrl { get; set; }
         public int ParentId { get; set; }
+        public virtual bool IsShow { get; set; }
     }
 
     public class MenuListDto : MenuCreateDto
     {
-        public bool IsShow { get; set; }
+        public override bool IsShow { get; set; }
     }
 }

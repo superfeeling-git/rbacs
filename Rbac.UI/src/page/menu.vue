@@ -22,7 +22,7 @@
             </el-table-column>
         </el-table>
         <el-dialog title="添加菜单" :visible.sync="dialogTableVisible">
-            <menu-create></menu-create>
+            <menu-create :key="new Date().getTime()"></menu-create>
         </el-dialog>
         <!--MVVM模式，组件化开发-->
     </div>

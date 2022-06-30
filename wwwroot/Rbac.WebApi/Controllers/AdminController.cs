@@ -38,5 +38,14 @@ namespace Rbac.WebApi.Controllers
         {
             return Ok(admin.Login(dto));
         }
+        /// <summary>
+        /// 分页数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Page(int PageIndex = 1, int PageSize = 10)
+        {
+            return Ok(admin.Page(PageIndex,PageSize));
+        }
     }
 }

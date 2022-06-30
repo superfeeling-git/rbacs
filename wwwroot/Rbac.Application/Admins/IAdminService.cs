@@ -24,5 +24,12 @@ namespace Rbac.Application.Admins
         /// <param name="dto"></param>
         /// <returns></returns>
         TokenDto Login(LoginDto dto);
+        /// <summary>
+        /// 分页记录
+        /// </summary>
+        /// <param name="PageIndex"></param>
+        /// <param name="PageSize"></param>
+        /// <returns></returns>
+        Tuple<List<AdminListDto>, int> Page(int PageIndex = 1, int PageSize = 10);
     }
 }

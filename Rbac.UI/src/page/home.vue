@@ -3,10 +3,10 @@
         <el-header>权限管理系统</el-header>
         <el-container>
             <el-aside width="200px">
-                <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-                    background-color="#545c64" :default-openeds="[2]" text-color="#fff" active-text-color="#ffd04b"
-                    :unique-opened="true" :router="true">
-                    <el-submenu index="1" v-for="(item, index) in rootMenu" :key="menu.menuId">
+                <el-menu default-active="/menu" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+                    background-color="#545c64" text-color="#fff" active-text-color="#ffd04b"
+                    :unique-opened="false" :router="true">
+                    <el-submenu :index="String(item.menuId)" v-for="(item, index) in rootMenu" :key="item.menuId">
                         <template slot="title">
                             <i class="el-icon-location"></i>
                             <span>
@@ -43,7 +43,7 @@ export default {
     mounted() {
         axios.get("/api/menu/GetMenuList").then(m => {
             this.menu = m.data;
-            console.table(this.menu);
+            //console.table(this.menu);
         });
     },
     computed: {

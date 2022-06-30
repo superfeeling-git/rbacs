@@ -116,9 +116,14 @@ namespace Rbac.Repository
         /// 获取全部数据
         /// </summary>
         /// <returns></returns>
-        public virtual IQueryable<TEntity> GetQuery(Expression<Func<TEntity, bool>> predicate)
+        public virtual IQueryable<TEntity> GetQuery(Expression<Func<TEntity, bool>> predicate = null)
         {
-            return db.Set<TEntity>().Where(predicate);
+            var query = db.Set<TEntity>().AsQueryable();
+            if(predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            return query;
         }
     }
 }
