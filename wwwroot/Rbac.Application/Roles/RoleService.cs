@@ -16,6 +16,7 @@ namespace Rbac.Application.Roles
     {
         private readonly IRoleRepository roleRepository;
         private readonly IMenuRoleRepository menuRoleRepository;
+        private readonly IMapper mapper;
 
         public RoleService
             (
@@ -27,13 +28,22 @@ namespace Rbac.Application.Roles
         {
             this.roleRepository = roleRepository;
             this.menuRoleRepository = menuRoleRepository;
+            this.mapper = mapper;
         }
 
         public int SavePermission(PermissionDto permission)
         {
+            //删除
+            menuRoleRepository.Delete(m => m.RoleId == permission.RoleId);
+
             var ids = permission.MenuId.Select(m => new MenuRole { MenuId = m, RoleId = permission.RoleId }).ToList();
 
             return menuRoleRepository.BulkCreate(ids);
+        }
+
+        public List<MenuRoleDto> GetPermissionByRoleId(int RoleId)
+        {
+            return mapper.Map<List<MenuRoleDto>>(menuRoleRepository.GetQuery().Where(m => m.RoleId == RoleId).ToList());
         }
     }
 }

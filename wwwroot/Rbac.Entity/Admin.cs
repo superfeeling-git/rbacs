@@ -46,5 +46,10 @@ namespace Rbac.Entity
         ///是否锁定
         ///</summary>
         public byte IsLock { get; set; }
+
+        /// <summary>
+        /// 多个角色
+        /// </summary>
+        public List<AdminRole> AdminRoles { get; set; }
     }
 }

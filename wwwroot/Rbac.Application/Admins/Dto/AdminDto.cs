@@ -35,6 +35,16 @@ namespace Rbac.Application.Admins.Dto
         /// 
         /// </summary>
         public DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 多个角色
+        /// </summary>
+        public int[] RoleId { get; set; }
+
+        /// <summary>
+        /// 多个角色
+        /// </summary>
+        public List<AdminRoleDto> AdminRoles { get; set; }
     }
 
     public class AdminListDto

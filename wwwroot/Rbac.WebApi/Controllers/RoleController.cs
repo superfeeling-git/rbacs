@@ -20,8 +20,14 @@ namespace Rbac.WebApi.Controllers
         [HttpPost]
         public IActionResult SavePermission(PermissionDto permission)
         {
-            role.SavePermission(permission)
+            role.SavePermission(permission);
             return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult GetPermissionByRoleId(int RoleId)
+        {
+            return new JsonResult(role.GetPermissionByRoleId(RoleId));
         }
     }
 }

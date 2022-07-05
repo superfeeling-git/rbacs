@@ -9,5 +9,12 @@ namespace Rbac.Repository.MenuRoles
 {
     public class MenuRoleRepository : BaseRepository<MenuRole, int>, IMenuRoleRepository
     {
+        private readonly RbacDbContext db1;
+
+        public MenuRoleRepository(RbacDbContext db)
+        {
+            this.db = db;
+            this.db1 = db;
+        }
     }
 }

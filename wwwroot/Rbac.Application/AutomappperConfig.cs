@@ -19,6 +19,8 @@ namespace Rbac.Application
             CreateMap<AdminDto, Admin>().ReverseMap();
             CreateMap<MenuListDto, Menu>().ReverseMap();
             CreateMap<AdminListDto, Admin>().ReverseMap();
+            CreateMap<MenuRoleDto, MenuRole>().ReverseMap();
+            CreateMap<AdminRoleDto, AdminRole>().ReverseMap();
         }
     }
 }

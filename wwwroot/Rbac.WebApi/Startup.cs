@@ -22,6 +22,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Rbac.Application.Admins;
 using Swashbuckle.AspNetCore.Filters;
+using Rbac.Repository.MenuRoles;
+using Rbac.Repository.AdminRoles;
 
 namespace Rbac.WebApi
 {
@@ -51,6 +53,8 @@ namespace Rbac.WebApi
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IMenuRoleRepository, MenuRoleRepository>();
+            services.AddScoped<IAdminRoleRepository, AdminRoleRepository>();
 
             services.AddCors(option =>
             {

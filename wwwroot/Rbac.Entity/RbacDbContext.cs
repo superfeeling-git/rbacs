@@ -35,7 +35,7 @@ namespace Rbac.Entity
             });
 
             modelBuilder.Entity<AdminRole>(m => {
-                m.HasOne<Admin>().WithMany().HasForeignKey(k => k.AdminId);
+                //m.HasOne<Admin>().WithMany().HasForeignKey(k => k.AdminId);
                 m.HasOne<Role>().WithMany().HasForeignKey(k => k.RoleId);
             });
 

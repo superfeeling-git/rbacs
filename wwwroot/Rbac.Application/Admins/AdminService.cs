@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Rbac.Application.Admins.Dto;
 using Rbac.Entity;
 using Rbac.Repository;
+using Rbac.Repository.AdminRoles;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -22,13 +23,19 @@ namespace Rbac.Application.Admins
         private readonly IAdminRepository AdminRepository;
         private readonly IMapper mapper;
         private readonly IConfiguration configuration;
+        private readonly IAdminRoleRepository adminRoleRepository;
 
-        public AdminService(IAdminRepository AdminRepository, IMapper mapper, IConfiguration configuration)
+        public AdminService(
+            IAdminRepository AdminRepository,
+            IMapper mapper, IConfiguration configuration,
+            IAdminRoleRepository adminRoleRepository
+            )
             : base(AdminRepository, mapper)
         {
             this.AdminRepository = AdminRepository;
             this.mapper = mapper;
             this.configuration = configuration;
+            this.adminRoleRepository = adminRoleRepository;
         }
 
         public TokenDto Login(LoginDto dto)
@@ -80,7 +87,6 @@ namespace Rbac.Application.Admins
         public Tuple<List<AdminListDto>, int> Page(int PageIndex = 1, int PageSize = 10)
         {
             var list = mapper.Map<List<AdminListDto>>(AdminRepository.GetQuery().OrderBy(m => m.AdminId).Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList());
-
             //Foreach
             /*list.ForEach(m =>
             {
@@ -104,7 +110,14 @@ namespace Rbac.Application.Admins
             dto.CreateTime = DateTime.Now;
             dto.LastLoginTime = null;
 
-            AdminRepository.Create(mapper.Map<Admin>(dto));
+            var Entity = mapper.Map<Admin>(dto);
+
+            AdminRepository.Create(Entity);
+
+            //批量管理员、角色的中间表
+            /*var list = dto.RoleId.Select(m => new AdminRole { RoleId = m, AdminId = Entity.AdminId }).ToList();
+
+            adminRoleRepository.BulkCreate(list);*/
 
             return new ResultDto { Code = 0, Msg = "注册成功" };
         }

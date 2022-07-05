@@ -21,7 +21,7 @@
             </el-table-column>
         </el-table>
         <el-dialog title="分配权限" :visible.sync="dialogVisible">
-            <menu-tree ref="dialogTree" :roleId="roleId"></menu-tree>
+            <menu-tree ref="dialogTree" :roleId="roleId" :key="new Date().getTime()"></menu-tree>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogVisible = false">取 消</el-button>
                 <el-button type="primary" @click="SavePermission()">确 定</el-button>
@@ -80,7 +80,10 @@
                 var checkedId = this.$refs.dialogTree.$refs.menuTree.getCheckedNodes(true, true).map(m => m.value);
                 var roleId = this.roleId;
                 axios.post('/api/role/SavePermission', { menuId: checkedId, roleId: roleId }).then(m => {
-                    
+                    this.$message({
+                        message: '成功分配权限',
+                        type: 'success'
+                    });
                 });
                 /**
                  * 1、父组件获取
